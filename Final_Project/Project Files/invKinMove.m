@@ -18,7 +18,7 @@ for i = 1:numSteps
     joint_pos = ur5.get_current_joints();
 end
 g = ur5FwdKin(joint_pos); % The actual ee position given by joint_pos
-dso3 = sqrt(trace((g(1:3,1:3)-stop(1:3,1:3)*(g(1:3,1:3)-stop(1:3,1:3)');
-dR3 = norm(g(1:4,4)-stop(1:3,4));
+dso3 = sqrt(trace((g(1:3,1:3)-stop(1:3,1:3)*(g(1:3,1:3)-stop(1:3,1:3))')));
+dR3 = norm(g(1:3,4)-stop(1:3,4));
 error = [dR3, dso3]; % The errors
 end
