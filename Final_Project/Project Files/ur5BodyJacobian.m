@@ -4,7 +4,7 @@ ths(2) = ths(2)+pi/2;
 ths(4) = ths(4)+pi/2;
 
 % Defintions
-L0 = 0.09; %Height of first revolute joint from table
+L0 = 0.0892; %Height of first revolute joint from table
 L1 = 0.425;
 L2 = 0.392;
 L3 = 0.1093;
