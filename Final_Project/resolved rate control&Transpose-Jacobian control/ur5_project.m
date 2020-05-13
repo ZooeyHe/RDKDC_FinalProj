@@ -28,7 +28,9 @@ mode=input("Please select mode(Inverse kinematics=1, Resolved-rate control=2, Tr
 
 % Move-And-Place Task
 if mode==1 % Inverse kinematics
-    
+    cd ..;
+    cd "Project Files";
+    errors = InvKinControl(g_start, g_target);
 elseif mode==2 %Resolved-rate control
     k=1;
     error1=ur5RRcontrol(g_start_int,k,ur5);
