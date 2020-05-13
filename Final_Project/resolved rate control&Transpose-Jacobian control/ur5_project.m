@@ -40,7 +40,7 @@ elseif mode==2 %Resolved-rate control
     error4=ur5RRcontrol(g_target,k,ur5);
     pause(1);
 elseif mode==3 % Transpose-Jacobian control
-    k=1.5;
+    k=2;
     error1=ur5TJcontrol(g_start_int,k,ur5);
     pause(1);
     error2=ur5TJcontrol(g_start,k,ur5);
