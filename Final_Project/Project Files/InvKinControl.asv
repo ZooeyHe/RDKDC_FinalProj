@@ -23,7 +23,6 @@ above_start = start;
 above_start(3,4) = start(3,4) + hover_height;
 above_target = target;
 above_target(3,4) = target(3,4) + hover_height;
-errors = zeros(7,2);
 
 % Step 0: Moving to home configuration
 disp("Step 0: Moving to home");
@@ -35,38 +34,32 @@ pause(2);
 
 % Step 1: Moving to above the start config
 disp("Step 1: Moving to position above start");
-[joint_pos, err] = invKinMove(cartesian_home, above_start, ur5, joint_pos, dx);
-errors(1,:) = err;
+joint_pos = invKinMove(cartesian_home, above_start, ur5, joint_pos, dx);
+errors = [errors;
 
 % Step 2: Moving to the start config
 pause(3);
 disp("Step 2: Moving to start");
-[joint_pos, err] = invKinMove(above_start, start, ur5, joint_pos, dx);
-errors(2,:) = err;
+joint_pos = invKinMove(above_start, start, ur5, joint_pos, dx);
 
 % Step 3: Moving to above the start again
 pause(3);
 disp("Step 3: Moving back above start");
-[joint_pos, err] = invKinMove(start, above_start, ur5, joint_pos, dx);
-errors(3,:) = err;
+joint_pos = invKinMove(start, above_start, ur5, joint_pos, dx);
 
 % Step 4: Moving to above the target config
 pause(3);
 disp("Step 4: Moving above the target");
-[joint_pos, err] = invKinMove(above_start, cartesian_home, ur5, joint_pos, dx);
-errors(7,:) = err;
-[joint_pos, err] = invKinMove(cartesian_home, above_target, ur5, joint_pos, dx);
-errors(4,:) = err;
+joint_pos = invKinMove(above_start, cartesian_home, ur5, joint_pos, dx);
+joint_pos = invKinMove(cartesian_home, above_target, ur5, joint_pos, dx);
 
 % Step 5: Moving to the target config
 pause(3);
 disp("Step 5: Moving to target");
-[joint_pos, err] = invKinMove(above_target, target, ur5, joint_pos, dx);
-errors(5,:) = err;
+joint_pos = invKinMove(above_target, target, ur5, joint_pos, dx);
 
 % Step 6: Moving back to above target
 pause(3);
 disp("Step 6: Moving back above target");
-[~, err] = invKinMove(target, above_target, ur5, joint_pos, dx);
-errors(6,:) = err;
+joint_pos = invKinMove(target, above_target, ur5, joint_pos, dx);
 end
